@@ -1,12 +1,14 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+package org.example.reverse;
 
-
+public class Reverse {
     public static String reverseLetter(String s) {
+        if (s == null) {
+            return null;
+        }
         char[] chars = s.toCharArray();
         int left = 0;
         int right = chars.length - 1;
+
         while (left < right) {
             if (!Character.isLetter(chars[left])) {
                 left++;
@@ -22,12 +24,6 @@ public class Main {
 
         }
         return new String(chars);
-
-    }
-
-    public static void main(String[] args) {
-        String s = "J@va the be$t!123";
-        System.out.println(reverseLetter (s));
 
     }
 

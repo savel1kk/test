@@ -2,15 +2,11 @@ package org.example.reverse;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class ReverseTest {
     private Reverse reverse = new Reverse();
-
-    @Test
-    public void  reverse_ShouldReverseString_ifContainsString() {
-        String result = reverse.reverseLetter("J@va the be$t!123");
-        Assertions.assertEquals("t@eb eht av$J!123", result);
-    }
 
     @Test
     public void reverse_ShouldReturnEmptyString_ifContainsNull() {
@@ -18,39 +14,17 @@ public class ReverseTest {
         Assertions.assertEquals(null, result);
     }
 
-    @Test
-    public void reverse_returnsEmptyForEmptyInput(){
-        String result = reverse.reverseLetter("");
-        Assertions.assertEquals("", result);
-    }
-
-    @Test
-    public void reverse_OneLetterRemainsAsItIs(){
-        String result = reverse.reverseLetter("a");
-        Assertions.assertEquals("a", result);
-    }
-
-    @Test
-    public void reverse_NoChangesIfThereAreNoLetters(){
-        String result = reverse.reverseLetter("123 !@#");
-        Assertions.assertEquals("123 !@#", result);
-    }
-
-    @Test
-    public void reverse_ReversalOfOnlyTheLetters () {
-        String result = reverse.reverseLetter("abcd");
-        Assertions.assertEquals("dcba", result);
-    }
-
-    @Test
-    public void reverse_NonLetterCharactersAtThEdgesAndInTheMiddle(){
-        String result = reverse.reverseLetter("#Ja5va9");
-        Assertions.assertEquals("#av5aJ9", result);
-    }
-
-    @Test
-    public void reverse_shouldKeepCaseOfLetter(){
-        String result = reverse.reverseLetter("Ja1Va");
-        Assertions.assertEquals("aV1aJ", result);
+    @ParameterizedTest
+    @CsvSource ({
+            "' ' , ' '",
+            "a , a",
+            "123 !@#, 123 !@#",
+            "J@va the be$t!123, t@eb eht av$J!123",
+            "abcd, dcba",
+            "#Ja5va9, #av5aJ9",
+            "Ja1Va, aV1aJ"
+    })
+    public void reverse_HandleVariousInput(String input , String result){
+        Assertions.assertEquals(result, reverse.reverseLetter(input));
     }
 }

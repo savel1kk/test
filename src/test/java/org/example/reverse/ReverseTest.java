@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class ReverseTest {
     private Reverse reverse = new Reverse();
-
     @Test
     public void reverse_ShouldReturnEmptyString_ifContainsNull() {
         String result = reverse.reverseLetter(null);

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 public class ReverseTest {
     private Reverse reverse = new Reverse();
 
-    static Stream<Arguments> reverseCases  (){
+    static Stream<Arguments> reverseCases (){
         return Stream.of(
                 Arguments.of(" ", " "),
                 Arguments.of("a", "a"),
